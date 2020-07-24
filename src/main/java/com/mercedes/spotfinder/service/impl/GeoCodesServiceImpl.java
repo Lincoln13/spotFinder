@@ -13,6 +13,11 @@ import com.mercedes.spotfinder.exception.BusinessException;
 import com.mercedes.spotfinder.model.Geocode;
 import com.mercedes.spotfinder.service.GeoCodesService;
 
+/**
+ * Service to fetch the geographical coordinates of a location name
+ * @author lincoln
+ *
+ */
 @Service
 public class GeoCodesServiceImpl implements GeoCodesService {
 	
@@ -21,8 +26,17 @@ public class GeoCodesServiceImpl implements GeoCodesService {
 	@Autowired
 	private ExternalEndPoints endpoint;
 	
+	/**
+	 * Uses Here API's find coordinates to get the coordinates of a location Name.
+	 * 
+	 * @param locationName => user's input 
+	 * @return code => type Geocode
+	 * @exception BusinessException => raised when user gives invalid input
+	 * @exception JsonProcessingException => raised due to json processing 
+	 */
 	@Override
 	public Geocode findGeocode(String locationName) throws BusinessException, JsonProcessingException {
+		// makes call to HERE's API
 		String response = endpoint.findGeoCodes(locationName);
 		JsonNode coordinates = getLongitudeAndLattitude(response);
 		Geocode code = new Geocode(locationName, 
@@ -30,6 +44,9 @@ public class GeoCodesServiceImpl implements GeoCodesService {
 		return code;
 	}
 	
+	/*
+	 * Parses the JSON data and fetches only the coordinates of the location
+	 */
 	private JsonNode getLongitudeAndLattitude(String response) throws BusinessException, JsonProcessingException {
 		JsonNode coordinates = null;
 		try {
