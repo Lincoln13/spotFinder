@@ -7,53 +7,58 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mercedes.spotfinder.controller.SpotFinderRestResource;
 import com.mercedes.spotfinder.dao.ExternalEndPoints;
 import com.mercedes.spotfinder.helper.SortByDistance;
 import com.mercedes.spotfinder.model.Geocode;
-import com.mercedes.spotfinder.model.App.AppResponse;
-import com.mercedes.spotfinder.model.App.AppRestaurantResponse;
-import com.mercedes.spotfinder.model.restaurant.Items;
-import com.mercedes.spotfinder.model.restaurant.RestaurantResponse;
+import com.mercedes.spotfinder.model.App.CommonResponse;
+import com.mercedes.spotfinder.model.App.RestaurantResponse;
+import com.mercedes.spotfinder.model.external.ExtResponse;
+import com.mercedes.spotfinder.model.external.Items;
 import com.mercedes.spotfinder.service.RestaurantService;
 
 @Service
-public class RestaurantServiceImpl implements RestaurantService{
-	
-	Logger logger = LoggerFactory.getLogger(SpotFinderRestResource.class);
-	
+public class RestaurantServiceImpl extends Mapper implements RestaurantService {
+
+	Logger logger = LoggerFactory.getLogger(RestaurantServiceImpl.class);
+
 	@Autowired
 	private ExternalEndPoints dao;
-	
+
 	@Override
-	public AppRestaurantResponse[] findRestaurant(Geocode codes) {
-		RestaurantResponse response = dao.findResturants(codes);
+	public RestaurantResponse[] findRestaurantNearMe(Geocode codes) {
+		ExtResponse response = dao.getResturants(codes);
 		logger.info("Found {} restaurants in {}", response.getResults().getItems().length, codes.getLocationName());
-		
+
 		Items[] items = response.getResults().getItems();
-		
-		Arrays.sort(items, new SortByDistance()); 
-		
-		AppResponse appResponse = new AppResponse();
-		AppRestaurantResponse[] restaurants = new AppRestaurantResponse[3];
-		for (int i = 0; i < 3; i ++ ) {
-			restaurants[i] = mapping(items[i]);
+
+		Arrays.sort(items, new SortByDistance());
+
+		RestaurantResponse[] restaurants = new RestaurantResponse[3];
+		for (int i = 0; i < 3; i++) {
+			restaurants[i] = mappingStuff(items[i]);
 		}
-		appResponse.setRestaurant(restaurants);
 		return restaurants;
 	}
-	
-	private AppRestaurantResponse mapping(Items item) {
-		AppRestaurantResponse res = new AppRestaurantResponse();
-		res.setName(item.getTitle());
-		res.setCategory(item.getCategory().getTitle());
-		res.setAddress(item.getVicinity());
-		res.setDistance(item.getDistance());
-		res.setMoreInfoRef(item.getHref());
-		res.setPosition(item.getPosition());
-		res.setTags(item.getTags());
-		logger.info("{}",res.toString());
+
+	private RestaurantResponse mappingStuff(Items item) {
+		RestaurantResponse res = new RestaurantResponse();
+		res.setRestaurantResponse(mappingToAppResponse(item));
+
+		res.setParkingSpotResponse(mappingParkingSpot(res.getRestaurantResponse().getPosition()));
 		return res;
 	}
-	
+
+	private CommonResponse[] mappingParkingSpot(Double[] position) {
+
+		ExtResponse parkingSpotResponse = dao.getParkingSpots(position);
+		Items[] items = parkingSpotResponse.getResults().getItems();
+
+		Arrays.sort(items, new SortByDistance());
+
+		CommonResponse[] parkingSpots = new CommonResponse[3];
+		for (int i = 0; i < 3; i++) {
+			parkingSpots[i] = mappingToAppResponse(items[i]);
+		}
+		return parkingSpots;
+	}
 }

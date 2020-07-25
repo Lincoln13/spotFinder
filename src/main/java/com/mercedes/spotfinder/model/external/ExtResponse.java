@@ -1,8 +1,8 @@
-package com.mercedes.spotfinder.model.restaurant;
+package com.mercedes.spotfinder.model.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RestaurantResponse {
+public class ExtResponse {
 	
 	@JsonProperty
 	private Results results;
@@ -26,5 +26,5 @@ public class RestaurantResponse {
 		this.results = results;
 	}
 	
-	 public RestaurantResponse(){}
+	 public ExtResponse(){}
 }

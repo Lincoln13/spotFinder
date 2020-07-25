@@ -1,4 +1,4 @@
-package com.mercedes.spotfinder.model.restaurant;
+package com.mercedes.spotfinder.model.external;
 
 public class Items {
 	private Double[] position;
@@ -14,6 +14,7 @@ public class Items {
 	private Tags[] tags;
 	private String id;
 	private OpeningHours openingHours;
+	private String[] chainIds; // new
 	private AlternativeNames[] alternativeNames;
 
 	public Double[] getPosition() {
@@ -126,6 +127,14 @@ public class Items {
 
 	public void setAlternativeNames(AlternativeNames[] alternativeNames) {
 		this.alternativeNames = alternativeNames;
+	}
+
+	public String[] getChainIds() {
+		return chainIds;
+	}
+
+	public void setChainIds(String[] chainIds) {
+		this.chainIds = chainIds;
 	}
 
 }

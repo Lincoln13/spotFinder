@@ -1,16 +1,6 @@
-package com.mercedes.spotfinder.model.restaurant;
+package com.mercedes.spotfinder.model.external;
 
 public class Address {
-//	"text": "Ebertstraße 22<br/>Mitte, 10117 Berlin<br/>Germany",
-//    "house": "22",
-//    "street": "Ebertstraße",
-//    "postalCode": "10117",
-//    "district": "Mitte",
-//    "city": "Berlin",
-//    "county": "Berlin",
-//    "stateCode": "Berlin",
-//    "country": "Germany",
-//    "countryCode": "DEU"
 	private String text;
 	private String house;
 	private String street;

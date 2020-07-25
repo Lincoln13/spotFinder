@@ -2,7 +2,7 @@ package com.mercedes.spotfinder.helper;
 
 import java.util.Comparator;
 
-import com.mercedes.spotfinder.model.restaurant.Items;
+import com.mercedes.spotfinder.model.external.Items;
 
 public class SortByDistance implements Comparator<Items>  {
 	

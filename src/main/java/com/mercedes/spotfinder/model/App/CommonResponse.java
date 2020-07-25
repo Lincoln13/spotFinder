@@ -2,10 +2,12 @@ package com.mercedes.spotfinder.model.App;
 
 import java.util.Arrays;
 
-import com.mercedes.spotfinder.model.restaurant.Tags;
+import com.mercedes.spotfinder.model.external.AlternativeNames;
+import com.mercedes.spotfinder.model.external.OpeningHours;
+import com.mercedes.spotfinder.model.external.Tags;
 
-public class AppRestaurantResponse {
-	
+public class CommonResponse {
+
 	private String name;
 	private String distance;
 	private String address;
@@ -13,8 +15,8 @@ public class AppRestaurantResponse {
 	private String moreInfoRef;
 	private Tags[] tags;
 	private Double[] position;
-	
-	// TODO: need to place parking spots near here!
+	private OpeningHours openingHours;
+	private AlternativeNames[] alternativeNames;
 	
 	public String getName() {
 		return name;
@@ -59,10 +61,24 @@ public class AppRestaurantResponse {
 		this.position = position;
 	}
 	
+	public OpeningHours getOpeningHours() {
+		return openingHours;
+	}
+	public void setOpeningHours(OpeningHours openingHours) {
+		this.openingHours = openingHours;
+	}
+	
 	@Override
 	public String toString() {
 		return "AppRestaurantResponse [name=" + name + ", distance=" + distance + ", address=" + address + ", category="
 				+ category + ", moreInfoRef=" + moreInfoRef + ", tags=" + Arrays.toString(tags) + ", position="
-				+ Arrays.toString(position) + "]";
+				+ Arrays.toString(position) + ", openingHours=" + openingHours + ", alternativeNames="
+				+ alternativeNames + "]";
+	}
+	public AlternativeNames[] getAlternativeNames() {
+		return alternativeNames;
+	}
+	public void setAlternativeNames(AlternativeNames[] alternativeNames) {
+		this.alternativeNames = alternativeNames;
 	}
 }
