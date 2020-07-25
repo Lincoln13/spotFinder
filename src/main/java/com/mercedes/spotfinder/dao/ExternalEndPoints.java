@@ -35,7 +35,8 @@ public class ExternalEndPoints {
 //		String lattitude = "52.5159";
 		logger.info("Looking for Restaurants for {}", codes.toString());
 		String url = "https://places.ls.hereapi.com/places/v1/discover/explore?at="+ lattitude +","+ longitude +"&cat=restaurant&apiKey=mMzcnFutNmsMu-QHKOJmEpRHFFMl7sUzi7pxEn43-E4";
-//		String res = restTemplate.getForObject(url, String.class);
+		logger.info("url => {}", url);
+		String res = restTemplate.getForObject(url, String.class);
 		response = restTemplate.getForObject(url, RestaurantResponse.class);
 		logger.info("response => {}", response.getSearch().getContext().getType());
 //		return response;

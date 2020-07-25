@@ -1,7 +1,9 @@
 package com.mercedes.spotfinder.service;
 
+import com.mercedes.spotfinder.model.App.AppResponse;
+
 public interface SpotFinderService {
 
-	void findAllThings(String locationName);
+	AppResponse findAllThings(String locationName);
 
 }

@@ -28,4 +28,9 @@ public class Tags {
 	public void setGroup(String group) {
 		this.group = group;
 	}
+
+	@Override
+	public String toString() {
+		return "Tags [id=" + id + ", title=" + title + ", group=" + group + "]";
+	}
 }
