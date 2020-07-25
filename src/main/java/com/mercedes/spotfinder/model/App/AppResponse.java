@@ -1,17 +1,20 @@
 package com.mercedes.spotfinder.model.App;
 
+import org.springframework.http.HttpStatus;
+
 public class AppResponse {
 	
 	private String location;
 	private RestaurantResponse[] restaurant;
 	private CommonResponse[] chargingStations;
-	private String message;
+	private HttpStatus httpStatus;
+	private String systemMessage;
 	
-	public String getMessage() {
-		return message;
+	public HttpStatus getMessage() {
+		return httpStatus;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setHttpStatus(HttpStatus httpStatus) {
+		this.httpStatus = httpStatus;
 	}
 	public String getLocation() {
 		return location;
@@ -30,6 +33,12 @@ public class AppResponse {
 	}
 	public void setChargingStations(CommonResponse[] chargingStations) {
 		this.chargingStations = chargingStations;
+	}
+	public String getSystemMessage() {
+		return systemMessage;
+	}
+	public void setSystemMessage(String systemMessage) {
+		this.systemMessage = systemMessage;
 	}
 	
 }

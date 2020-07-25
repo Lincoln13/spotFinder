@@ -16,28 +16,28 @@ import com.mercedes.spotfinder.service.SpotFinderService;
 
 @Service
 public class SpotFinderServiceImpl implements SpotFinderService {
-	
+
 	Logger logger = LoggerFactory.getLogger(SpotFinderServiceImpl.class);
-	
+
 	@Autowired
 	private GeocodesService codeService;
 	@Autowired
 	private RestaurantService restaurantService;
 	@Autowired
 	private ChargingStationService chargingStationService;
-	
+
 	@Override
-	public AppResponse findAllThings(String locationName) {
+	public AppResponse findAllThings(String locationName) throws JsonProcessingException, BusinessException {
+		
 		AppResponse appResponse = new AppResponse();
-		try {
-			appResponse.setLocation(locationName);
-			Geocode codes = codeService.findGeocode(locationName);
-			logger.info("Coordinates for {}", codes.toString());
-			appResponse.setRestaurant(restaurantService.findRestaurantNearMe(codes));
-			appResponse.setChargingStations(chargingStationService.findChargingStationsNearMe(codes));
-		} catch (JsonProcessingException | BusinessException e) {
-			e.printStackTrace();
-		}
+		
+		appResponse.setLocation(locationName);
+		Geocode codes = codeService.findGeocode(locationName);
+		logger.info("Coordinates for {}", codes.toString());
+		
+		appResponse.setRestaurant(restaurantService.findRestaurantNearMe(codes));
+		appResponse.setChargingStations(chargingStationService.findChargingStationsNearMe(codes));
+		
 		return appResponse;
 	}
 }
