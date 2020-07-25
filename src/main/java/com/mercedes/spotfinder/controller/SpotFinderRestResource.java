@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mercedes.spotfinder.exception.BusinessException;
+import com.mercedes.spotfinder.exception.ProcessingException;
 import com.mercedes.spotfinder.model.App.AppResponse;
 import com.mercedes.spotfinder.service.SpotFinderService;
 
@@ -28,7 +28,7 @@ public class SpotFinderRestResource {
 		try {
 			response = service.findAllThings(locationName);
 			response.setHttpStatus(HttpStatus.OK);
-		} catch (JsonProcessingException | BusinessException e) {
+		} catch (ProcessingException | BusinessException e) {
 			response.setLocation(locationName);
 			logger.error(e.getMessage());
 			response.setSystemMessage(e.getMessage());

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mercedes.spotfinder.appconstants.AppConstants;
 import com.mercedes.spotfinder.model.App.AppResponse;
 
 @RestController
@@ -16,7 +17,7 @@ public class Fallback {
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public ResponseEntity<AppResponse> fallback(){
 		AppResponse response = new AppResponse();
-		response.setSystemMessage("Something went wrong! Please try again.");
+		response.setSystemMessage(AppConstants.PROCESSING_EXCEPTION);
 		return ResponseEntity.ok(response);
 	}
 }

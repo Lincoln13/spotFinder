@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mercedes.spotfinder.exception.BusinessException;
+import com.mercedes.spotfinder.exception.ProcessingException;
 import com.mercedes.spotfinder.model.Geocode;
 import com.mercedes.spotfinder.model.App.AppResponse;
 import com.mercedes.spotfinder.service.ChargingStationService;
@@ -27,7 +27,7 @@ public class SpotFinderServiceImpl implements SpotFinderService {
 	private ChargingStationService chargingStationService;
 
 	@Override
-	public AppResponse findAllThings(String locationName) throws JsonProcessingException, BusinessException {
+	public AppResponse findAllThings(String locationName) throws ProcessingException, BusinessException {
 		
 		AppResponse appResponse = new AppResponse();
 		
