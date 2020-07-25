@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mercedes.spotfinder.dao.ExternalEndPoints;
 import com.mercedes.spotfinder.model.App.AppResponse;
 import com.mercedes.spotfinder.service.SpotFinderService;
 
@@ -21,16 +20,11 @@ public class SpotFinderRestResource {
 	Logger logger = LoggerFactory.getLogger(SpotFinderRestResource.class);
 	@Autowired
 	private SpotFinderService service;
-	
-	@Autowired
-	private ExternalEndPoints ex;
 
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	public ResponseEntity<AppResponse> findYourSpots(@PathVariable("name") String locationName) {
 		AppResponse response = new AppResponse();
 		response = service.findAllThings(locationName);
-//		ex.findResturants_2();
-//		ex.findStations();
 		return ResponseEntity.ok(response);
 	}
 	
