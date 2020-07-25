@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mercedes.spotfinder.dao.ExternalEndPoints;
 import com.mercedes.spotfinder.exception.BusinessException;
 import com.mercedes.spotfinder.model.Geocode;
-import com.mercedes.spotfinder.service.GeoCodesService;
+import com.mercedes.spotfinder.service.GeocodesService;
 
 /**
  * Service to fetch the geographical coordinates of a location name
@@ -19,9 +19,9 @@ import com.mercedes.spotfinder.service.GeoCodesService;
  *
  */
 @Service
-public class GeoCodesServiceImpl implements GeoCodesService {
+public class GeocodesServiceImpl implements GeocodesService {
 	
-	Logger logger = LoggerFactory.getLogger(GeoCodesServiceImpl.class);
+	Logger logger = LoggerFactory.getLogger(GeocodesServiceImpl.class);
 	
 	@Autowired
 	private ExternalEndPoints endpoint;
