@@ -27,8 +27,10 @@ public class SpotFinderRestResource {
 
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	public ResponseEntity<AppResponse> findYourSpots(@PathVariable("name") String locationName) {
-		AppResponse response = service.findAllThings(locationName);
-		
+		AppResponse response = new AppResponse();
+		response = service.findAllThings(locationName);
+//		ex.findResturants_2();
+//		ex.findStations();
 		return ResponseEntity.ok(response);
 	}
 	

@@ -1,4 +1,4 @@
-package com.mercedes.spotfinder.model.restaurant;
+package com.mercedes.spotfinder.model.external;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,10 +1,10 @@
 package com.mercedes.spotfinder.service;
 
 import com.mercedes.spotfinder.model.Geocode;
-import com.mercedes.spotfinder.model.App.AppRestaurantResponse;
+import com.mercedes.spotfinder.model.App.RestaurantResponse;
 
 public interface RestaurantService {
 
-	AppRestaurantResponse[] findRestaurant(Geocode codes);
+	RestaurantResponse[] findRestaurantNearMe(Geocode codes);
 
 }

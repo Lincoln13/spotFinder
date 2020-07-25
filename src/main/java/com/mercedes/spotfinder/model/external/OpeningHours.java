@@ -1,4 +1,4 @@
-package com.mercedes.spotfinder.model.restaurant;
+package com.mercedes.spotfinder.model.external;
 
 public class OpeningHours {
 	private String text;

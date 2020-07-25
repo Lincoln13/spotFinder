@@ -37,7 +37,7 @@ public class GeocodesServiceImpl implements GeocodesService {
 	@Override
 	public Geocode findGeocode(String locationName) throws BusinessException, JsonProcessingException {
 		// makes call to HERE's API
-		String response = endpoint.findGeoCodes(locationName);
+		String response = endpoint.getGeoCodes(locationName);
 		JsonNode coordinates = getLongitudeAndLattitude(response);
 		Geocode code = new Geocode(locationName, 
 				coordinates.get("Latitude").toString(), coordinates.get("Longitude").toString());
