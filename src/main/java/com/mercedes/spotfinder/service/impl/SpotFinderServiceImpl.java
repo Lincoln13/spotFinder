@@ -34,6 +34,10 @@ public class SpotFinderServiceImpl implements SpotFinderService {
 	@Autowired
 	private ChargingStationService chargingStationService;
 
+	/**
+	 * Main service class which calls other service class and return 
+	 * app response back to controller.
+	 */
 	@Override
 	public AppResponse findAllThings(String locationName) throws ProcessingException, BusinessException, InterruptedException, ExecutionException {
 		
@@ -56,6 +60,7 @@ public class SpotFinderServiceImpl implements SpotFinderService {
 		return appResponse;
 	}
 	
+	// maps responses to application specific response object.
 	private AppResponse mapToAppResponse(AppResponse response, RestaurantResponse[] restaurant, CommonResponse[] chargingStation) {
 		response.setRestaurant(restaurant);
 		response.setChargingStations(chargingStation);

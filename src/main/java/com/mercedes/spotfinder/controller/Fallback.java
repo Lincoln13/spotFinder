@@ -13,6 +13,10 @@ import com.mercedes.spotfinder.model.App.AppResponse;
 @RestController
 public class Fallback {
 
+	/**
+	 * Fallback mechanism for the application
+	 * @return ResponseEntity
+	 */
 	@OnError
 	@RequestMapping(value = "/error", method = RequestMethod.GET)
 	public ResponseEntity<AppResponse> fallback(){

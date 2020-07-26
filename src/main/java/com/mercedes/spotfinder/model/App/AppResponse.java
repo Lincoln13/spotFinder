@@ -2,6 +2,11 @@ package com.mercedes.spotfinder.model.App;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * Model class to be used as the response entity 
+ * for the application - spotfinder
+ *
+ */
 public class AppResponse {
 	
 	private String location;

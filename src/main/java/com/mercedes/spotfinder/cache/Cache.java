@@ -6,6 +6,7 @@ import com.mercedes.spotfinder.model.cache.CacheDataStore;
 
 public class Cache {
 
+	// stores the data - location name key to cacheDatastore value
 	public static ConcurrentHashMap<String, CacheDataStore> cache = new ConcurrentHashMap<>();
 
 	public static ConcurrentHashMap<String, CacheDataStore> getCache() {

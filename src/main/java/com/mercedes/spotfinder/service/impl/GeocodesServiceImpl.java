@@ -23,7 +23,7 @@ import com.mercedes.spotfinder.service.GeocodesService;
 @Service
 public class GeocodesServiceImpl implements GeocodesService {
 	
-	Logger logger = LoggerFactory.getLogger(GeocodesServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GeocodesServiceImpl.class);
 	
 	@Autowired
 	private ExternalEndPoints endpoint;
@@ -58,7 +58,7 @@ public class GeocodesServiceImpl implements GeocodesService {
 			if (view.size() != 0) {
 				coordinates = jsonNode.get(AppConstants.RESPONSE).get(AppConstants.VIEW).get(0)
 						.get(AppConstants.RESULT).get(0).get(AppConstants.LOCATION).get(AppConstants.DISPLAY_POSITION);
-				logger.info("coordinates => {}", coordinates.toPrettyString());
+				LOGGER.info("coordinates => {}", coordinates.toPrettyString());
 			} else {
 				throw new BusinessException(AppConstants.LOCATION_NAME_INVALID);
 			}
