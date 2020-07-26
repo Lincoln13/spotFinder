@@ -23,7 +23,7 @@ import com.mercedes.spotfinder.service.SpotFinderService;
 @Service
 public class SpotFinderServiceImpl implements SpotFinderService {
 
-	Logger logger = LoggerFactory.getLogger(SpotFinderServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SpotFinderServiceImpl.class);
 
 	@Autowired
 	private CacheService cacheService;
@@ -47,7 +47,7 @@ public class SpotFinderServiceImpl implements SpotFinderService {
 		// Looking into Cache to find the data
 		CacheDataStore cache = cacheService.findFromCache(locationName);
 		if (cache != null) {
-			logger.info("{} found in Cache", locationName);
+			LOGGER.info("{} found in Cache", locationName);
 			return mapToAppResponse(appResponse, cache.getRestaurant(), cache.getChargingStations());
 		}
 		
