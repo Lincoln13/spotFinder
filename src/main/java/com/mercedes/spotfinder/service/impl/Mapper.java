@@ -5,6 +5,11 @@ import com.mercedes.spotfinder.model.external.Items;
 
 public abstract class Mapper {
 
+	/**
+	 * Maps Items values to application specific model object
+	 * @param item : data from response
+	 * @return CommonResponse : Application specific model object.
+	 */
 	public CommonResponse mappingToAppResponse(Items item) {
 		CommonResponse res = new CommonResponse();
 

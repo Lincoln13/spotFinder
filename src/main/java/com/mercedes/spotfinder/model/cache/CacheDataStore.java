@@ -5,6 +5,12 @@ import org.joda.time.DateTime;
 import com.mercedes.spotfinder.model.App.CommonResponse;
 import com.mercedes.spotfinder.model.App.RestaurantResponse;
 
+/**
+ * Model class to store data for caching
+ * setTime => its used for synchronization purpose
+ * isStale => tells us if the data is stale
+ *
+ */
 public class CacheDataStore {
 
 	private RestaurantResponse[] restaurant;

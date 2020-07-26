@@ -22,12 +22,16 @@ public class ChargingStationServiceImpl extends Mapper implements ChargingStatio
 	Logger logger = LoggerFactory.getLogger(ChargingStationServiceImpl.class);
 	
 	@Autowired
-	private ExternalEndPoints dao;
+	private ExternalEndPoints endpointsDAO;
 	
+	/**
+	 * Service finds top - 3 charging spots near to the location 
+	 * entered by the user.
+	 */
 	@Override
 	public CommonResponse[] findChargingStationsNearMe(Geocode codes) throws InterruptedException, ExecutionException {
 		
-		ExtResponse response = dao.getChargingStations(codes).get();
+		ExtResponse response = endpointsDAO.getChargingStations(codes).get();
 		logger.info("Found {} charging stations in {}", response.getResults().getItems().length, codes.getLocationName());
 		
 		Items[] items = response.getResults().getItems();

@@ -24,6 +24,11 @@ public class SpotFinderRestResource {
 	@Autowired
 	private SpotFinderService service;
 
+	/**
+	 * Emtry/Request endpoint of the application
+	 * @param locationName : location user entered
+	 * @return ResponseEntity
+	 */
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	public ResponseEntity<AppResponse> findYourSpots(@PathVariable("name") String locationName) {
 		AppResponse response = new AppResponse();

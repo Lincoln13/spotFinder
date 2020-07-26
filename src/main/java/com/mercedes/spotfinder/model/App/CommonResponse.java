@@ -6,6 +6,13 @@ import com.mercedes.spotfinder.model.external.AlternativeNames;
 import com.mercedes.spotfinder.model.external.OpeningHours;
 import com.mercedes.spotfinder.model.external.Tags;
 
+
+/**
+ * Model class to hold details about the 
+ * closest charging station from the location
+ * user has entered.
+ *
+ */
 public class CommonResponse {
 
 	private String name;
