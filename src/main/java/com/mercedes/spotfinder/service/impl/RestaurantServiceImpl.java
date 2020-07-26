@@ -28,7 +28,7 @@ public class RestaurantServiceImpl extends Mapper implements RestaurantService {
 	/**
 	 * Service class to find the top - 3 restaurants nearer to the location
 	 * Also, finds top -3 parking spots closer to each restaurants.
-	 * so, overall 3 - restaurants and 9 parking spots.
+	 * so, overall 3 - restaurants and 3 parking spots.
 	 */
 	@Override
 	public RestaurantResponse[] findRestaurantNearMe(Geocode codes) throws InterruptedException, ExecutionException {
