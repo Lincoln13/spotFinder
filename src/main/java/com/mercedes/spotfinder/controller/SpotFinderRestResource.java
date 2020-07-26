@@ -1,5 +1,7 @@
 package com.mercedes.spotfinder.controller;
 
+import java.util.concurrent.ExecutionException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class SpotFinderRestResource {
 		try {
 			response = service.findAllThings(locationName);
 			response.setHttpStatus(HttpStatus.OK);
-		} catch (ProcessingException | BusinessException e) {
+		} catch (ProcessingException | BusinessException | InterruptedException | ExecutionException e) {
 			response.setLocation(locationName);
 			logger.error(e.getMessage());
 			response.setSystemMessage(e.getMessage());

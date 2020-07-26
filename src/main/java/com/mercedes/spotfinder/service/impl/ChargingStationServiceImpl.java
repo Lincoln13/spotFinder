@@ -1,6 +1,7 @@
 package com.mercedes.spotfinder.service.impl;
 
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +25,9 @@ public class ChargingStationServiceImpl extends Mapper implements ChargingStatio
 	private ExternalEndPoints dao;
 	
 	@Override
-	public CommonResponse[] findChargingStationsNearMe(Geocode codes) {
+	public CommonResponse[] findChargingStationsNearMe(Geocode codes) throws InterruptedException, ExecutionException {
 		
-		ExtResponse response = dao.getChargingStations(codes);
+		ExtResponse response = dao.getChargingStations(codes).get();
 		logger.info("Found {} charging stations in {}", response.getResults().getItems().length, codes.getLocationName());
 		
 		Items[] items = response.getResults().getItems();
