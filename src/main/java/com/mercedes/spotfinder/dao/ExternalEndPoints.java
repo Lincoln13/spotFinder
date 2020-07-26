@@ -1,9 +1,11 @@
 package com.mercedes.spotfinder.dao;
 
 import java.text.MessageFormat;
+import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,7 +27,8 @@ public class ExternalEndPoints {
 		return response;
 	}
 	
-	public ExtResponse getResturants(Geocode codes) {
+	@Async
+	public CompletableFuture<ExtResponse> getResturants(Geocode codes) {
 		ExtResponse response = null;
 		String longitude = codes.getLongitude();
 		String lattitude = codes.getLattitude();
@@ -34,10 +37,11 @@ public class ExternalEndPoints {
 		String url = MessageFormat.format(AppConstants.ENDPOINT_RESTAURANT, lattitude, longitude, AppConstants.API_KEY);
 		
 		response = restTemplate.getForObject(url, ExtResponse.class);
-		return response;
+		return CompletableFuture.completedFuture(response);
 	}
 
-	public ExtResponse getChargingStations(Geocode codes) {
+	@Async
+	public CompletableFuture<ExtResponse> getChargingStations(Geocode codes) {
 		ExtResponse response = null;
 		String longitude = codes.getLongitude();
 		String lattitude = codes.getLattitude();
@@ -46,10 +50,11 @@ public class ExternalEndPoints {
 		String url = MessageFormat.format(AppConstants.ENDPOINT_STATIONS, lattitude, longitude, AppConstants.API_KEY);
 		
 		response = restTemplate.getForObject(url, ExtResponse.class);
-		return response;
+		return CompletableFuture.completedFuture(response);
 	}
 	
-	public ExtResponse getParkingSpots(Double[] position) {
+	@Async
+	public CompletableFuture<ExtResponse> getParkingSpots(Double[] position) {
 		ExtResponse response = null;
 		String lattitude = position[0].toString();
 		String longitude = position[1].toString();
@@ -59,6 +64,6 @@ public class ExternalEndPoints {
 
 		response = restTemplate.getForObject(url, ExtResponse.class);
 		logger.info("Found {} parking spots near the place. Suggesting top - 3 near you!", response.getResults().getItems().length);
-		return response;
+		return CompletableFuture.completedFuture(response);
 	}
 }

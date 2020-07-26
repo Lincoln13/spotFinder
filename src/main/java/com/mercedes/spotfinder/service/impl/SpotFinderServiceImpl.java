@@ -1,5 +1,7 @@
 package com.mercedes.spotfinder.service.impl;
 
+import java.util.concurrent.ExecutionException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class SpotFinderServiceImpl implements SpotFinderService {
 	private ChargingStationService chargingStationService;
 
 	@Override
-	public AppResponse findAllThings(String locationName) throws ProcessingException, BusinessException {
+	public AppResponse findAllThings(String locationName) throws ProcessingException, BusinessException, InterruptedException, ExecutionException {
 		
 		AppResponse appResponse = new AppResponse();
 		appResponse.setLocation(locationName);
