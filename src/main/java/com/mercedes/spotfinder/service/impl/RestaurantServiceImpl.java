@@ -25,6 +25,8 @@ public class RestaurantServiceImpl extends Mapper implements RestaurantService {
 	private ExternalEndPoints dao;
 
 	@Override
+//	@Cacheable("Restaurants")
+//	@Cacheable("Restaurants")
 	public RestaurantResponse[] findRestaurantNearMe(Geocode codes) {
 		ExtResponse response = dao.getResturants(codes);
 		logger.info("Found {} restaurants in {}", response.getResults().getItems().length, codes.getLocationName());
